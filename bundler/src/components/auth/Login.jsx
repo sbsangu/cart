@@ -2,11 +2,20 @@ import { Box,Container, FormControl, FormLabel, Heading, Input, VStack,Stack, Bu
 import React from 'react'
 import { useState } from 'react'
 import {  Link } from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import { login } from '../../redux/actions/user'
+
 
 const Login = () => {
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState("")
-    
+    const dispatch=useDispatch();
+    const submitHandler=(e)=>{
+        e.preventDefault();
+        dispatch(login(email,password));
+
+
+    }
 
 
   return (
@@ -14,7 +23,7 @@ const Login = () => {
    <Container minH={"90vh"} display={"flex"} flexDirection={"column"} justifyContent={"center"}>
    <Heading color={'red.400'} paddingBottom={"8"} marginBottom={"12"} paddingTop={"4"} textAlign={'center'} bgColor={"black"}>Welcome To Bundler</Heading>
    <VStack  >
-   <FormControl>
+   <form onSubmit={submitHandler}>
    <Stack spacing={"7"}>
     <Box><FormLabel>Email Address</FormLabel>
     <Input required type={"email"} value={email} onChange={(e)=>setEmail(e.target.value)} placeholder={"ABC@gmail.com"} focusBorderColor={"red.900"}
@@ -39,7 +48,7 @@ const Login = () => {
         <Button alignItems={'center'} size={'sm'} colorScheme={'facebook'} variant={'solid'} color={"white"}> Sign Up </Button>
     </Link></Box> 
     </Stack>
-   </FormControl>
+   </form>
 
    </VStack>
    

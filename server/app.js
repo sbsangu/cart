@@ -44,6 +44,6 @@ app.use("/api/v1",other)
 export default app;
 
 app.get("/",(req,res)=>
-res.send(`<h1>Server is Running..Click <a href=${process.env.FRONTED_URL}>Here </a> </h1>`))
+res.send(`<h1>Server is Running..Click <a href=${process.env.FRONTEND_URL}>Here </a> </h1>`))
 
 app.use(ErrorMiddleware);

@@ -1,8 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit"
 
-
+import {userReducer} from "./reducers/userReducer"
 const store=configureStore({
 reducer:{
+    user:userReducer,
 
 
 }
@@ -10,3 +11,5 @@ reducer:{
 })
 
 export default store;
+
+export const server="https://course-liart.vercel.app";
