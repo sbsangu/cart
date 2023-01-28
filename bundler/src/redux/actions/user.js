@@ -14,8 +14,9 @@ export const login=(email,password)=>async(dispatch)=>{
 
             //whenever cookies is used
         })
-        console.log(data);
+       
         dispatch({type:'loginSuccess',payload:data});
+        console.log(data);
        
 
          

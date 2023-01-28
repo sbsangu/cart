@@ -22,6 +22,9 @@ export const register= catchAsyncError(async (req, res, next) => {
   const user = await User.findOne({ email });
 
   if (user) return next(new ErrorHandler("User Already Exist", 409));
+  // if(user){
+  //   return user.name;
+  // }
 
   const fileUri = getDataUri(file);
   const mycloud = await cloudinary.v2.uploader.upload(fileUri.content);
@@ -334,7 +337,7 @@ res.status(200).cookie("token",null,{
 User.watch().on("change", async () => {
   const stats = await Stats.find({}).sort({ createdAt: "desc" }).limit(1);
 
-  subscription = await User.find({"subscription.status": "active"} );
+  const subscription = await User.find({"subscription.status": "active"} );
   stats[0].users =await User.countDocuments();
   stats[0].subscription = subscription.length;
   stats[0].createdAt = new Date(Date.now());
